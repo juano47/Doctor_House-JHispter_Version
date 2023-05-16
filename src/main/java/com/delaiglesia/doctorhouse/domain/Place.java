@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -24,6 +25,10 @@ public class Place implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "street_address")
     private String streetAddress;
 
@@ -38,7 +43,7 @@ public class Place implements Serializable {
 
     @ManyToMany(mappedBy = "places")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "places", "specialties" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "places", "especialties" }, allowSetters = true)
     private Set<Doctor> doctors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -54,6 +59,19 @@ public class Place implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Place name(String name) {
+        this.setName(name);
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStreetAddress() {
@@ -163,6 +181,7 @@ public class Place implements Serializable {
     public String toString() {
         return "Place{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", streetAddress='" + getStreetAddress() + "'" +
             ", postalCode='" + getPostalCode() + "'" +
             ", city='" + getCity() + "'" +

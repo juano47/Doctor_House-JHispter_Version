@@ -88,21 +88,21 @@ export const DoctorDetail = () => {
             {doctorEntity.places
               ? doctorEntity.places.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.name}</a>
                     {doctorEntity.places && i === doctorEntity.places.length - 1 ? '' : ', '}
                   </span>
                 ))
               : null}
           </dd>
           <dt>
-            <Translate contentKey="doctorHouseJHipsterVersionApp.doctor.specialty">Specialty</Translate>
+            <Translate contentKey="doctorHouseJHipsterVersionApp.doctor.especialty">Especialty</Translate>
           </dt>
           <dd>
-            {doctorEntity.specialties
-              ? doctorEntity.specialties.map((val, i) => (
+            {doctorEntity.especialties
+              ? doctorEntity.especialties.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
-                    {doctorEntity.specialties && i === doctorEntity.specialties.length - 1 ? '' : ', '}
+                    <a>{val.name}</a>
+                    {doctorEntity.especialties && i === doctorEntity.especialties.length - 1 ? '' : ', '}
                   </span>
                 ))
               : null}

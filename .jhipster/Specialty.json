@@ -23,7 +23,7 @@
   "relationships": [
     {
       "otherEntityName": "doctor",
-      "otherEntityRelationshipName": "specialty",
+      "otherEntityRelationshipName": "especialty",
       "ownerSide": false,
       "relationshipName": "doctor",
       "relationshipType": "many-to-many"

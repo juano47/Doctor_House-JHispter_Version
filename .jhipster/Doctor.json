@@ -39,6 +39,7 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "place",
       "otherEntityRelationshipName": "doctor",
       "ownerSide": true,
@@ -46,10 +47,11 @@
       "relationshipType": "many-to-many"
     },
     {
+      "otherEntityField": "name",
       "otherEntityName": "specialty",
       "otherEntityRelationshipName": "doctor",
       "ownerSide": true,
-      "relationshipName": "specialty",
+      "relationshipName": "especialty",
       "relationshipType": "many-to-many"
     }
   ],

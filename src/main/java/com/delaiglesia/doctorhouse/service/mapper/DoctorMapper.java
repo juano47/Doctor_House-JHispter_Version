@@ -15,31 +15,33 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface DoctorMapper extends EntityMapper<DoctorDTO, Doctor> {
-    @Mapping(target = "places", source = "places", qualifiedByName = "placeIdSet")
-    @Mapping(target = "specialties", source = "specialties", qualifiedByName = "specialtyIdSet")
+    @Mapping(target = "places", source = "places", qualifiedByName = "placeNameSet")
+    @Mapping(target = "especialties", source = "especialties", qualifiedByName = "specialtyNameSet")
     DoctorDTO toDto(Doctor s);
 
     @Mapping(target = "removePlace", ignore = true)
-    @Mapping(target = "removeSpecialty", ignore = true)
+    @Mapping(target = "removeEspecialty", ignore = true)
     Doctor toEntity(DoctorDTO doctorDTO);
 
-    @Named("placeId")
+    @Named("placeName")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PlaceDTO toDtoPlaceId(Place place);
+    @Mapping(target = "name", source = "name")
+    PlaceDTO toDtoPlaceName(Place place);
 
-    @Named("placeIdSet")
-    default Set<PlaceDTO> toDtoPlaceIdSet(Set<Place> place) {
-        return place.stream().map(this::toDtoPlaceId).collect(Collectors.toSet());
+    @Named("placeNameSet")
+    default Set<PlaceDTO> toDtoPlaceNameSet(Set<Place> place) {
+        return place.stream().map(this::toDtoPlaceName).collect(Collectors.toSet());
     }
 
-    @Named("specialtyId")
+    @Named("specialtyName")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    SpecialtyDTO toDtoSpecialtyId(Specialty specialty);
+    @Mapping(target = "name", source = "name")
+    SpecialtyDTO toDtoSpecialtyName(Specialty specialty);
 
-    @Named("specialtyIdSet")
-    default Set<SpecialtyDTO> toDtoSpecialtyIdSet(Set<Specialty> specialty) {
-        return specialty.stream().map(this::toDtoSpecialtyId).collect(Collectors.toSet());
+    @Named("specialtyNameSet")
+    default Set<SpecialtyDTO> toDtoSpecialtyNameSet(Set<Specialty> specialty) {
+        return specialty.stream().map(this::toDtoSpecialtyName).collect(Collectors.toSet());
     }
 }

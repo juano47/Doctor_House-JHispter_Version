@@ -91,6 +91,16 @@ export const PlaceUpdate = () => {
                 />
               ) : null}
               <ValidatedField
+                label={translate('doctorHouseJHipsterVersionApp.place.name')}
+                id="place-name"
+                name="name"
+                data-cy="name"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
+              />
+              <ValidatedField
                 label={translate('doctorHouseJHipsterVersionApp.place.streetAddress')}
                 id="place-streetAddress"
                 name="streetAddress"

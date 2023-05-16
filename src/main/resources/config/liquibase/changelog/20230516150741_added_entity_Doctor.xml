@@ -53,8 +53,8 @@
 
         <addPrimaryKey columnNames="doctor_id, place_id" tableName="rel_doctor__place"/>
 
-        <createTable tableName="rel_doctor__specialty">
-            <column name="specialty_id" type="bigint">
+        <createTable tableName="rel_doctor__especialty">
+            <column name="especialty_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="doctor_id" type="bigint">
@@ -62,7 +62,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="doctor_id, specialty_id" tableName="rel_doctor__specialty"/>
+        <addPrimaryKey columnNames="doctor_id, especialty_id" tableName="rel_doctor__especialty"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

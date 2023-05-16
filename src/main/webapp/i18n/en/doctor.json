@@ -25,7 +25,7 @@
       "license": "License",
       "image": "Image",
       "place": "Place",
-      "specialty": "Specialty"
+      "especialty": "Especialty"
     }
   }
 }

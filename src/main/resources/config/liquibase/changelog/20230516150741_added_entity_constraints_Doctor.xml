@@ -21,14 +21,14 @@
                                  referencedTableName="place"/>
 
         <addForeignKeyConstraint baseColumnNames="doctor_id"
-                                 baseTableName="rel_doctor__specialty"
-                                 constraintName="fk_rel_doctor__specialty__doctor_id"
+                                 baseTableName="rel_doctor__especialty"
+                                 constraintName="fk_rel_doctor__especialty__doctor_id"
                                  referencedColumnNames="id"
                                  referencedTableName="doctor"/>
 
-        <addForeignKeyConstraint baseColumnNames="specialty_id"
-                                 baseTableName="rel_doctor__specialty"
-                                 constraintName="fk_rel_doctor__specialty__specialty_id"
+        <addForeignKeyConstraint baseColumnNames="especialty_id"
+                                 baseTableName="rel_doctor__especialty"
+                                 constraintName="fk_rel_doctor__especialty__especialty_id"
                                  referencedColumnNames="id"
                                  referencedTableName="specialty"/>
     </changeSet>

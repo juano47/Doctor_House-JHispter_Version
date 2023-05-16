@@ -56,7 +56,7 @@ export const DoctorUpdate = () => {
       ...doctorEntity,
       ...values,
       places: mapIdList(values.places),
-      specialties: mapIdList(values.specialties),
+      especialties: mapIdList(values.especialties),
     };
 
     if (isNew) {
@@ -75,7 +75,7 @@ export const DoctorUpdate = () => {
           ...doctorEntity,
           hireDate: convertDateTimeFromServer(doctorEntity.hireDate),
           places: doctorEntity?.places?.map(e => e.id.toString()),
-          specialties: doctorEntity?.specialties?.map(e => e.id.toString()),
+          especialties: doctorEntity?.especialties?.map(e => e.id.toString()),
         };
 
   return (
@@ -162,24 +162,24 @@ export const DoctorUpdate = () => {
                 {places
                   ? places.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}
               </ValidatedField>
               <ValidatedField
-                label={translate('doctorHouseJHipsterVersionApp.doctor.specialty')}
-                id="doctor-specialty"
-                data-cy="specialty"
+                label={translate('doctorHouseJHipsterVersionApp.doctor.especialty')}
+                id="doctor-especialty"
+                data-cy="especialty"
                 type="select"
                 multiple
-                name="specialties"
+                name="especialties"
               >
                 <option value="" key="0" />
                 {specialties
                   ? specialties.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}

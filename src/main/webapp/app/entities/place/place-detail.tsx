@@ -33,6 +33,12 @@ export const PlaceDetail = () => {
           </dt>
           <dd>{placeEntity.id}</dd>
           <dt>
+            <span id="name">
+              <Translate contentKey="doctorHouseJHipsterVersionApp.place.name">Name</Translate>
+            </span>
+          </dt>
+          <dd>{placeEntity.name}</dd>
+          <dt>
             <span id="streetAddress">
               <Translate contentKey="doctorHouseJHipsterVersionApp.place.streetAddress">Street Address</Translate>
             </span>

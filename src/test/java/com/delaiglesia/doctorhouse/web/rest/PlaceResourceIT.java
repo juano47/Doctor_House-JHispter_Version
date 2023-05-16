@@ -32,6 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class PlaceResourceIT {
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     private static final String DEFAULT_STREET_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_STREET_ADDRESS = "BBBBBBBBBB";
 
@@ -72,6 +75,7 @@ class PlaceResourceIT {
      */
     public static Place createEntity(EntityManager em) {
         Place place = new Place()
+            .name(DEFAULT_NAME)
             .streetAddress(DEFAULT_STREET_ADDRESS)
             .postalCode(DEFAULT_POSTAL_CODE)
             .city(DEFAULT_CITY)
@@ -87,6 +91,7 @@ class PlaceResourceIT {
      */
     public static Place createUpdatedEntity(EntityManager em) {
         Place place = new Place()
+            .name(UPDATED_NAME)
             .streetAddress(UPDATED_STREET_ADDRESS)
             .postalCode(UPDATED_POSTAL_CODE)
             .city(UPDATED_CITY)
@@ -118,6 +123,7 @@ class PlaceResourceIT {
         List<Place> placeList = placeRepository.findAll();
         assertThat(placeList).hasSize(databaseSizeBeforeCreate + 1);
         Place testPlace = placeList.get(placeList.size() - 1);
+        assertThat(testPlace.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPlace.getStreetAddress()).isEqualTo(DEFAULT_STREET_ADDRESS);
         assertThat(testPlace.getPostalCode()).isEqualTo(DEFAULT_POSTAL_CODE);
         assertThat(testPlace.getCity()).isEqualTo(DEFAULT_CITY);
@@ -150,6 +156,29 @@ class PlaceResourceIT {
 
     @Test
     @Transactional
+    void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = placeRepository.findAll().size();
+        // set the field null
+        place.setName(null);
+
+        // Create the Place, which fails.
+        PlaceDTO placeDTO = placeMapper.toDto(place);
+
+        restPlaceMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(placeDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Place> placeList = placeRepository.findAll();
+        assertThat(placeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPlaces() throws Exception {
         // Initialize the database
         placeRepository.saveAndFlush(place);
@@ -160,6 +189,7 @@ class PlaceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(place.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].streetAddress").value(hasItem(DEFAULT_STREET_ADDRESS)))
             .andExpect(jsonPath("$.[*].postalCode").value(hasItem(DEFAULT_POSTAL_CODE)))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
@@ -178,6 +208,7 @@ class PlaceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(place.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.streetAddress").value(DEFAULT_STREET_ADDRESS))
             .andExpect(jsonPath("$.postalCode").value(DEFAULT_POSTAL_CODE))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY))
@@ -204,6 +235,7 @@ class PlaceResourceIT {
         // Disconnect from session so that the updates on updatedPlace are not directly saved in db
         em.detach(updatedPlace);
         updatedPlace
+            .name(UPDATED_NAME)
             .streetAddress(UPDATED_STREET_ADDRESS)
             .postalCode(UPDATED_POSTAL_CODE)
             .city(UPDATED_CITY)
@@ -223,6 +255,7 @@ class PlaceResourceIT {
         List<Place> placeList = placeRepository.findAll();
         assertThat(placeList).hasSize(databaseSizeBeforeUpdate);
         Place testPlace = placeList.get(placeList.size() - 1);
+        assertThat(testPlace.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPlace.getStreetAddress()).isEqualTo(UPDATED_STREET_ADDRESS);
         assertThat(testPlace.getPostalCode()).isEqualTo(UPDATED_POSTAL_CODE);
         assertThat(testPlace.getCity()).isEqualTo(UPDATED_CITY);
@@ -326,6 +359,7 @@ class PlaceResourceIT {
         List<Place> placeList = placeRepository.findAll();
         assertThat(placeList).hasSize(databaseSizeBeforeUpdate);
         Place testPlace = placeList.get(placeList.size() - 1);
+        assertThat(testPlace.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPlace.getStreetAddress()).isEqualTo(DEFAULT_STREET_ADDRESS);
         assertThat(testPlace.getPostalCode()).isEqualTo(DEFAULT_POSTAL_CODE);
         assertThat(testPlace.getCity()).isEqualTo(DEFAULT_CITY);
@@ -345,6 +379,7 @@ class PlaceResourceIT {
         partialUpdatedPlace.setId(place.getId());
 
         partialUpdatedPlace
+            .name(UPDATED_NAME)
             .streetAddress(UPDATED_STREET_ADDRESS)
             .postalCode(UPDATED_POSTAL_CODE)
             .city(UPDATED_CITY)
@@ -363,6 +398,7 @@ class PlaceResourceIT {
         List<Place> placeList = placeRepository.findAll();
         assertThat(placeList).hasSize(databaseSizeBeforeUpdate);
         Place testPlace = placeList.get(placeList.size() - 1);
+        assertThat(testPlace.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPlace.getStreetAddress()).isEqualTo(UPDATED_STREET_ADDRESS);
         assertThat(testPlace.getPostalCode()).isEqualTo(UPDATED_POSTAL_CODE);
         assertThat(testPlace.getCity()).isEqualTo(UPDATED_CITY);

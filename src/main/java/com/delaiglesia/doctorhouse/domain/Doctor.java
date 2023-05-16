@@ -61,13 +61,13 @@ public class Doctor implements Serializable {
 
     @ManyToMany
     @JoinTable(
-        name = "rel_doctor__specialty",
+        name = "rel_doctor__especialty",
         joinColumns = @JoinColumn(name = "doctor_id"),
-        inverseJoinColumns = @JoinColumn(name = "specialty_id")
+        inverseJoinColumns = @JoinColumn(name = "especialty_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "doctors" }, allowSetters = true)
-    private Set<Specialty> specialties = new HashSet<>();
+    private Set<Specialty> especialties = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -200,27 +200,27 @@ public class Doctor implements Serializable {
         return this;
     }
 
-    public Set<Specialty> getSpecialties() {
-        return this.specialties;
+    public Set<Specialty> getEspecialties() {
+        return this.especialties;
     }
 
-    public void setSpecialties(Set<Specialty> specialties) {
-        this.specialties = specialties;
+    public void setEspecialties(Set<Specialty> specialties) {
+        this.especialties = specialties;
     }
 
-    public Doctor specialties(Set<Specialty> specialties) {
-        this.setSpecialties(specialties);
+    public Doctor especialties(Set<Specialty> specialties) {
+        this.setEspecialties(specialties);
         return this;
     }
 
-    public Doctor addSpecialty(Specialty specialty) {
-        this.specialties.add(specialty);
+    public Doctor addEspecialty(Specialty specialty) {
+        this.especialties.add(specialty);
         specialty.getDoctors().add(this);
         return this;
     }
 
-    public Doctor removeSpecialty(Specialty specialty) {
-        this.specialties.remove(specialty);
+    public Doctor removeEspecialty(Specialty specialty) {
+        this.especialties.remove(specialty);
         specialty.getDoctors().remove(this);
         return this;
     }

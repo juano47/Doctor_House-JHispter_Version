@@ -23,6 +23,9 @@
     "enableTranslation": true,
     "entities": ["Place", "Specialty", "Doctor"],
     "entitySuffix": "",
+    "herokuAppName": "doctor-house-j-hipster-version",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "17",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "languages": ["en"],
@@ -45,6 +48,7 @@
     "skipFakeData": false,
     "skipUserManagement": true,
     "testFrameworks": ["cypress"],
+    "useOkta": false,
     "websocket": false,
     "withAdminUi": true
   }

@@ -15,7 +15,7 @@ describe('Place e2e test', () => {
   const placePageUrlPattern = new RegExp('/place(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const placeSample = {};
+  const placeSample = { name: 'quantify up strategize' };
 
   let place;
 
@@ -162,13 +162,15 @@ describe('Place e2e test', () => {
     });
 
     it('should create an instance of Place', () => {
-      cy.get(`[data-cy="streetAddress"]`).type('Loan Cliff').should('have.value', 'Loan Cliff');
+      cy.get(`[data-cy="name"]`).type('Loan Cliff').should('have.value', 'Loan Cliff');
 
-      cy.get(`[data-cy="postalCode"]`).type('Investment invoice').should('have.value', 'Investment invoice');
+      cy.get(`[data-cy="streetAddress"]`).type('Investment invoice').should('have.value', 'Investment invoice');
 
-      cy.get(`[data-cy="city"]`).type('North Heloise').should('have.value', 'North Heloise');
+      cy.get(`[data-cy="postalCode"]`).type('Grocery Hat').should('have.value', 'Grocery Hat');
 
-      cy.get(`[data-cy="stateProvince"]`).type('Hat generate').should('have.value', 'Hat generate');
+      cy.get(`[data-cy="city"]`).type('Kuvalisfort').should('have.value', 'Kuvalisfort');
+
+      cy.get(`[data-cy="stateProvince"]`).type('robust Aruban').should('have.value', 'robust Aruban');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

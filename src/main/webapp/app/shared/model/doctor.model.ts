@@ -12,7 +12,7 @@ export interface IDoctor {
   imageContentType?: string | null;
   image?: string | null;
   places?: IPlace[] | null;
-  specialties?: ISpecialty[] | null;
+  especialties?: ISpecialty[] | null;
 }
 
 export const defaultValue: Readonly<IDoctor> = {};

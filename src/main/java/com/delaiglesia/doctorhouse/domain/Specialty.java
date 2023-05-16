@@ -32,9 +32,9 @@ public class Specialty implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "specialties")
+    @ManyToMany(mappedBy = "especialties")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "places", "specialties" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "places", "especialties" }, allowSetters = true)
     private Set<Doctor> doctors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -84,10 +84,10 @@ public class Specialty implements Serializable {
 
     public void setDoctors(Set<Doctor> doctors) {
         if (this.doctors != null) {
-            this.doctors.forEach(i -> i.removeSpecialty(this));
+            this.doctors.forEach(i -> i.removeEspecialty(this));
         }
         if (doctors != null) {
-            doctors.forEach(i -> i.addSpecialty(this));
+            doctors.forEach(i -> i.addEspecialty(this));
         }
         this.doctors = doctors;
     }
@@ -99,13 +99,13 @@ public class Specialty implements Serializable {
 
     public Specialty addDoctor(Doctor doctor) {
         this.doctors.add(doctor);
-        doctor.getSpecialties().add(this);
+        doctor.getEspecialties().add(this);
         return this;
     }
 
     public Specialty removeDoctor(Doctor doctor) {
         this.doctors.remove(doctor);
-        doctor.getSpecialties().remove(this);
+        doctor.getEspecialties().remove(this);
         return this;
     }
 

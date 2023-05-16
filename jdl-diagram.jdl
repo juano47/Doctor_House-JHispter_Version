@@ -1,6 +1,7 @@
 // an ignored comment
 /** not an ignored comment */
 entity Place {
+    name String required,
 	streetAddress String,
 	postalCode String,
 	city String,
@@ -22,8 +23,8 @@ entity Doctor {
 }
 
 relationship ManyToMany {
-	Doctor to Place,
-    Doctor to Specialty
+	Doctor{place(name)} to Place{doctor},
+    Doctor{especialty(name)} to Specialty{doctor}
 }
 
 // Set pagination options

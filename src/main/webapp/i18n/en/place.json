@@ -18,6 +18,7 @@
         "title": "Place"
       },
       "id": "ID",
+      "name": "Name",
       "streetAddress": "Street Address",
       "postalCode": "Postal Code",
       "city": "City",

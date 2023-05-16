@@ -3,6 +3,7 @@ package com.delaiglesia.doctorhouse.service.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.delaiglesia.doctorhouse.domain.Place} entity.
@@ -12,6 +13,9 @@ import java.util.Objects;
 public class PlaceDTO implements Serializable {
 
     private Long id;
+
+    @NotNull
+    private String name;
 
     private String streetAddress;
 
@@ -27,6 +31,14 @@ public class PlaceDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStreetAddress() {
@@ -87,6 +99,7 @@ public class PlaceDTO implements Serializable {
     public String toString() {
         return "PlaceDTO{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", streetAddress='" + getStreetAddress() + "'" +
             ", postalCode='" + getPostalCode() + "'" +
             ", city='" + getCity() + "'" +

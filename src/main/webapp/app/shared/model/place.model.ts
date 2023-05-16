@@ -2,6 +2,7 @@ import { IDoctor } from 'app/shared/model/doctor.model';
 
 export interface IPlace {
   id?: number;
+  name?: string;
   streetAddress?: string | null;
   postalCode?: string | null;
   city?: string | null;

@@ -33,7 +33,7 @@ public class DoctorDTO implements Serializable {
     private String imageContentType;
     private Set<PlaceDTO> places = new HashSet<>();
 
-    private Set<SpecialtyDTO> specialties = new HashSet<>();
+    private Set<SpecialtyDTO> especialties = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -107,12 +107,12 @@ public class DoctorDTO implements Serializable {
         this.places = places;
     }
 
-    public Set<SpecialtyDTO> getSpecialties() {
-        return specialties;
+    public Set<SpecialtyDTO> getEspecialties() {
+        return especialties;
     }
 
-    public void setSpecialties(Set<SpecialtyDTO> specialties) {
-        this.specialties = specialties;
+    public void setEspecialties(Set<SpecialtyDTO> especialties) {
+        this.especialties = especialties;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class DoctorDTO implements Serializable {
             ", license=" + getLicense() +
             ", image='" + getImage() + "'" +
             ", places=" + getPlaces() +
-            ", specialties=" + getSpecialties() +
+            ", especialties=" + getEspecialties() +
             "}";
     }
 }

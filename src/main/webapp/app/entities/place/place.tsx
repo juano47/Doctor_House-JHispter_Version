@@ -125,6 +125,9 @@ export const Place = () => {
                   <th className="hand" onClick={sort('id')}>
                     <Translate contentKey="doctorHouseJHipsterVersionApp.place.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={sort('name')}>
+                    <Translate contentKey="doctorHouseJHipsterVersionApp.place.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={sort('streetAddress')}>
                     <Translate contentKey="doctorHouseJHipsterVersionApp.place.streetAddress">Street Address</Translate>{' '}
                     <FontAwesomeIcon icon="sort" />
@@ -151,6 +154,7 @@ export const Place = () => {
                         {place.id}
                       </Button>
                     </td>
+                    <td>{place.name}</td>
                     <td>{place.streetAddress}</td>
                     <td>{place.postalCode}</td>
                     <td>{place.city}</td>

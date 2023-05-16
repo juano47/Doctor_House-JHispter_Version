@@ -22,7 +22,7 @@ public class DoctorRepositoryWithBagRelationshipsImpl implements DoctorRepositor
 
     @Override
     public Optional<Doctor> fetchBagRelationships(Optional<Doctor> doctor) {
-        return doctor.map(this::fetchPlaces).map(this::fetchSpecialties);
+        return doctor.map(this::fetchPlaces).map(this::fetchEspecialties);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DoctorRepositoryWithBagRelationshipsImpl implements DoctorRepositor
 
     @Override
     public List<Doctor> fetchBagRelationships(List<Doctor> doctors) {
-        return Optional.of(doctors).map(this::fetchPlaces).map(this::fetchSpecialties).orElse(Collections.emptyList());
+        return Optional.of(doctors).map(this::fetchPlaces).map(this::fetchEspecialties).orElse(Collections.emptyList());
     }
 
     Doctor fetchPlaces(Doctor result) {
@@ -55,20 +55,20 @@ public class DoctorRepositoryWithBagRelationshipsImpl implements DoctorRepositor
         return result;
     }
 
-    Doctor fetchSpecialties(Doctor result) {
+    Doctor fetchEspecialties(Doctor result) {
         return entityManager
-            .createQuery("select doctor from Doctor doctor left join fetch doctor.specialties where doctor is :doctor", Doctor.class)
+            .createQuery("select doctor from Doctor doctor left join fetch doctor.especialties where doctor is :doctor", Doctor.class)
             .setParameter("doctor", result)
             .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
             .getSingleResult();
     }
 
-    List<Doctor> fetchSpecialties(List<Doctor> doctors) {
+    List<Doctor> fetchEspecialties(List<Doctor> doctors) {
         HashMap<Object, Integer> order = new HashMap<>();
         IntStream.range(0, doctors.size()).forEach(index -> order.put(doctors.get(index).getId(), index));
         List<Doctor> result = entityManager
             .createQuery(
-                "select distinct doctor from Doctor doctor left join fetch doctor.specialties where doctor in :doctors",
+                "select distinct doctor from Doctor doctor left join fetch doctor.especialties where doctor in :doctors",
                 Doctor.class
             )
             .setParameter("doctors", doctors)

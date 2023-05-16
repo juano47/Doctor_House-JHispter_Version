@@ -6,6 +6,11 @@
   "entityTableName": "place",
   "fields": [
     {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "streetAddress",
       "fieldType": "String"
     },
