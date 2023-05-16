@@ -48,6 +48,13 @@ public class CacheConfiguration {
             createCache(cm, com.delaiglesia.doctorhouse.domain.User.class.getName());
             createCache(cm, com.delaiglesia.doctorhouse.domain.Authority.class.getName());
             createCache(cm, com.delaiglesia.doctorhouse.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Place.class.getName());
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Place.class.getName() + ".doctors");
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Specialty.class.getName());
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Specialty.class.getName() + ".doctors");
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Doctor.class.getName());
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Doctor.class.getName() + ".places");
+            createCache(cm, com.delaiglesia.doctorhouse.domain.Doctor.class.getName() + ".specialties");
             // jhipster-needle-ehcache-add-entry
         };
     }

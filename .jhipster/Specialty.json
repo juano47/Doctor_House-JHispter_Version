@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20230516150740",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "specialty",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Specialty",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "doctor",
+      "otherEntityRelationshipName": "specialty",
+      "ownerSide": false,
+      "relationshipName": "doctor",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

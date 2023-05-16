@@ -1,0 +1,57 @@
+{
+  "applications": "*",
+  "changelogDate": "20230516150741",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "doctor",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hireDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "license",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Doctor",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "place",
+      "otherEntityRelationshipName": "doctor",
+      "ownerSide": true,
+      "relationshipName": "place",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "specialty",
+      "otherEntityRelationshipName": "doctor",
+      "ownerSide": true,
+      "relationshipName": "specialty",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

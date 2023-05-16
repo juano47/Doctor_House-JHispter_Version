@@ -1,0 +1,33 @@
+// an ignored comment
+/** not an ignored comment */
+entity Place {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity Specialty {
+	name String required,
+    description String
+}
+
+entity Doctor {
+	name String required,
+	email String,
+	phoneNumber String,
+	hireDate Instant,
+	license Long,
+    image ImageBlob
+}
+
+relationship ManyToMany {
+	Doctor to Place,
+    Doctor to Specialty
+}
+
+// Set pagination options
+paginate Doctor, Place, Specialty with infinite-scroll
+service all with serviceImpl
+dto * with mapstruct
+
